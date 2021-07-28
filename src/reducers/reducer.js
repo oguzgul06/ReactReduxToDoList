@@ -1,3 +1,5 @@
+import { ADD } from "../actions/methods";
+
 const INITIAL_STATE = {
   list: [
     { id: 1, title: "Go Shopping", done: false },
