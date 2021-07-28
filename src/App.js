@@ -1,27 +1,23 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-const INITIAL_STATE = [
-  { id: 1, baslik: "Alisveris Yap", tamamlandi: false },
-  { id: 2, baslik: "Fatura ode", tamamlandi: true }
-];
 
 export default function App() {
   const [liste, setListe] = useState(INITIAL_STATE);
 
   return (
     <div className="App">
-      <h1>Yapılacaklar Listesi</h1>
+      <h1>ToDo List</h1>
       <div className="ekleme_formu">
         <input placeholer="listeye ekle" />
-        <button>Ekle</button>
+        <button>Add</button>
       </div>
       <div className="liste">
         {liste.map(item => (
-          <div className={item.tamamlandi ? "yapildi" : ""}>{item.baslik}</div>
+          <div className={item.tamamlandi ? "done" : ""}>{item.baslik}</div>
         ))}
       </div>
-      <button className="temizle">Tamamlananları Temizle</button>
+      <button className="temizle">Clear Completed Ones</button>
     </div>
   );
 }
