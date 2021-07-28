@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { connect } from "react-redux";
-import { AddToList, Toggle } from "./actions/methods";
+import { AddToList, Toggle, Clear } from "./actions/methods";
 import { useState } from "react";
 
 const App = (props) => {
@@ -30,13 +30,15 @@ const App = (props) => {
           <div
             onClick={() => props.Toggle(item.id)}
             key={item.id}
-            className={item.done ? "done" : ""}
+            className={item.done ? "yapildi" : ""}
           >
             {item.title}
           </div>
         ))}
       </div>
-      <button className="temizle">Clear Completed Ones</button>
+      <button onClick={() => props.Clear()} className="temizle">
+        Clear Completed Ones
+      </button>
     </div>
   );
 };
@@ -47,4 +49,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { AddToList, Toggle })(App);
+export default connect(mapStateToProps, { AddToList, Toggle, Clear })(App);

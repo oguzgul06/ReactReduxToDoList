@@ -9,3 +9,7 @@ export const AddToList = (text) => {
 export const Toggle = (id) => {
   return { type: TOGGLE, payload: id };
 };
+
+export const Clear = () => {
+  return { type: CLEAR };
+};

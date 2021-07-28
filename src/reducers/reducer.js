@@ -1,4 +1,4 @@
-import { ADD, TOGGLE } from "../actions/methods";
+import { ADD, TOGGLE, CLEAR } from "../actions/methods";
 
 const INITIAL_STATE = {
   list: [
@@ -28,6 +28,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
         list: state.list.map((item) =>
           item.id === action.payload ? { ...item, done: !item.done } : item
         ),
+      };
+
+    case CLEAR:
+      return {
+        ...state,
+        list: state.list.filter(item => item.done === false)
       };
 
     default:
