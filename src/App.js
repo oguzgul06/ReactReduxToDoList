@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import { connect } from "react-redux";
-import { AddToList } from "./actions/methods";
+import { AddToList, Toggle } from "./actions/methods";
 import { useState } from "react";
 
 const App = (props) => {
@@ -16,11 +16,22 @@ const App = (props) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <button onClick={() => props.AddToList(text)}>Add</button>
+        <button
+          onClick={() => {
+            setText("");
+            props.AddToList(text);
+          }}
+        >
+          Add
+        </button>
       </div>
       <div className="liste">
         {props.list.map((item) => (
-          <div key={item.id} className={item.done ? "done" : ""}>
+          <div
+            onClick={() => props.Toggle(item.id)}
+            key={item.id}
+            className={item.done ? "done" : ""}
+          >
             {item.title}
           </div>
         ))}
@@ -36,4 +47,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { AddToList })(App);
+export default connect(mapStateToProps, { AddToList, Toggle })(App);
